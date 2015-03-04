@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Things I do for love</title>
+<script src="js/phaser.js"></script>
+<script src="js/main.js"></script>
+<script src="js/Game.js"></script>
+<script src="js/raceLevel.js"></script>
+<style>
+body
+{
+color: #777;
+font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div id="game"></div>
+<script type="text/javascript">
+  window.onload = function(){
+      var game = new Phaser.Game(800,600, Phaser.AUTO, 'game');
+      game.state.add('main', state.main);
+      game.state.add('Game', state.Game);
+      game.state.add('raceLevel', state.raceLevel);
+  
+      game.state.start('main');
+
+  }
+</script>
+<div id="readme">
+<h2>Don't hesitate</h2>
+<ul>
+<li><strong>High Concept:</strong>
+  Relucant character, player must make a decision rapidly to maximize points earned
+</li>
+<li><strong>Player Experience Goals:</strong>
+  The players should experience that a quick decision making will maximize points earned. The player should come to learn that a moment's hesitation will lose their chance of maximizing points
+</li>
+<li><strong>Genre:</strong>
+  Platformer type of game 
+</li>
+<li><strong>Game play:</strong>
+  The player starts off in a basic world with two worlds, in which they must rapidly decide one or the other in a short amount of time, once they enter that world they have to do their best to maximize all points earned
+</li>
+<li><strong>Prototype goal:</strong>
+  Game states and passing data through the various game states
+</li>
+<li><strong>Features:</strong>
+  The audio, and the in-game world expansion based on a culminated amount of objectives
+</li>
+<li><strong>Setting/Premise:</strong>
+  A japanese themed city , the cat roams around the world trying to find the cat he once loved. In his way stands rascal rabbits and a possible loss of passion, will his fortitude withstand?
+</li>
+<li><strong>Story:</strong>
+  The story again is a cat that lost the one he loved and roams throughout the city areas in hopes that he will find that one cat. 
+</li>
+<li><strong>Target Audience:</strong>
+  Side scrollers and people who prefer ambient games
+</li>
+<li><strong>Play time:</strong>
+  Possibly up to 5-10 minutes
+</li>
+<li><strong>Strategies:</strong>
+  Being dodgy, in other words making use of platforms and dodging opponents as they come
+</li>
+<li><strong>Prototype Assets:</strong>
+  Most came from the generic phaser resources but the artwork comes straight from deviant art, and the music was by Calvin harris and the sprite for the main character came from SpriteDatabase but is actually from a game called "burger cat"
+</li>
+<li><strong>Prototype Closest Other Game:</strong>
+  Starstruck is perhaps the closest one to this game.
+</li>
+</ul>
+</div>
+</body>
+</html>
