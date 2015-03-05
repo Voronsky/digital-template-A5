@@ -7,6 +7,9 @@
 <script src="js/main.js"></script>
 <script src="js/Game.js"></script>
 <script src="js/raceLevel.js"></script>
+<script src="js/grudgeIntro.js"></script>
+<script src="js/grudgeLevel.js"></script>
+
 <style>
 body
 {
@@ -23,10 +26,12 @@ margin-top: 10px;
 <div id="game"></div>
 <script type="text/javascript">
   window.onload = function(){
-      var game = new Phaser.Game(800,600, Phaser.AUTO, 'game');
+      var game = new Phaser.Game(800,600, Phaser.CANVAS, 'game');
       game.state.add('main', state.main);
       game.state.add('Game', state.Game);
       game.state.add('raceLevel', state.raceLevel);
+      game.state.add('grudgeIntro', state.grudgeIntro);
+      game.state.add('grudgeLevel', state.grudgeLevel);
   
       game.state.start('main');
 
