@@ -50,13 +50,13 @@ state.Game.prototype = {
 	//First gate
 	this.raceGate = this.gates.create(30,346,'gate');
 	this.raceGate.body.immovable = true;
-	this.raceText = this.add.text(10,340,"To the race",{size: "16px", fill: "#FFF", align: "center"});
+	this.raceText = this.add.text(10,320,"World 1",{size: "16px", fill: "#FFF", align: "center"});
 	
 
 	//Grudge gate
 	this.grudgeGate = this.gates.create(this.world.width - 100, this.world.height - 270,'gate');
 	this.grudgeGate.body.immovable = true;
-	this.grudgeText = this.add.text(this.world.width - 20, this.world.height - 340, "Face your grudges",{size: "16px",fill: "#FFF", align:"center"});
+	this.grudgeText = this.add.text(this.world.width - 100, this.world.height - 290, "World 2",{size: "16px",fill: "#FFF", align:"center"});
 
 	//Loop advisor text
 	this.talk = this.add.text(this.world.width - 120, this.world.height - 192, "", {size: "2px", fill: "#FFF",wordWrap: true, wordWrapWidth: this.advisorNPC.width*5, align: "center"});
@@ -69,7 +69,7 @@ state.Game.prototype = {
 
 	
 	//Player creation
-	this.player = this.add.sprite(32, this.world.height - 150, 'player');
+	this.player = this.add.sprite(this.world.centerX, this.world.height - 150, 'player');
 	this.physics.arcade.enable(this.player);
 	this.player.body.bounce.y = 0.1;
 	this.player.body.gravity.y = 400;
@@ -93,11 +93,11 @@ state.Game.prototype = {
 	this.player.body.velocity.x = 0;
 	
 	if(this.input.keyboard.isDown(keys.RIGHT)){
-	    this.player.body.velocity.x = 400;
+	    this.player.body.velocity.x = 300;
 	    this.player.animations.play('right');
 	}
 	else if(this.input.keyboard.isDown(keys.LEFT)){
-	    this.player.body.velocity.x = -400;
+	    this.player.body.velocity.x = -300;
 	    this.player.animations.play('left');
 	}else{
 	    this.player.animations.stop();
@@ -135,7 +135,7 @@ state.Game.prototype = {
 
     startRace: function(){
 
-	this.state.start('raceLevel');
+	this.state.start('raceIntro');
     },
     
     startGrudge: function(){
