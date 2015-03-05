@@ -1,6 +1,5 @@
 //Game state code
 var keys = Phaser.Keyboard;
-
 state.Game = function (game) {
 
 };
@@ -12,13 +11,15 @@ state.Game.prototype = {
 	this.load.spritesheet('dude', 'assets/dude.png',32,48);
 	this.load.image('ground','assets/platform.png');
 	this.load.image('gate','assets/gate.png');
-	this.load.spritesheet('player','assets/george.png',46,42,16);
+	this.load.spritesheet('player','assets/guy.png',33,34,9,0,4);
     },
+
     create: function(){
 	
 	this.physics.startSystem(Phaser.Physics.ARCADE);
 	this.bgtile = this.add.tileSprite(0,0, 800,600,'sky');
 
+	
 	//Ground
 	this.platforms = this.add.group();
 	this.platforms.enableBody = true;
@@ -30,6 +31,8 @@ state.Game.prototype = {
 
 	//Platforms
 	this.ledge = this.platforms.create(-200,410, 'ground');
+	this.ledge.body.immovable = true;
+	this.ledge = this.platforms.create(this.world.width - 200, this.world.height - 210, 'ground');
 	this.ledge.body.immovable = true;
 
 	//creating the advisorNPC
@@ -48,10 +51,22 @@ state.Game.prototype = {
 	this.raceGate = this.gates.create(30,346,'gate');
 	this.raceGate.body.immovable = true;
 	this.raceText = this.add.text(10,340,"To the race",{size: "16px", fill: "#FFF", align: "center"});
+	
+
+	//Grudge gate
+	this.grudgeGate = this.gates.create(this.world.width - 100, this.world.height - 270,'gate');
+	this.grudgeGate.body.immovable = true;
+	this.grudgeText = this.add.text(this.world.width - 20, this.world.height - 340, "Face your grudges",{size: "16px",fill: "#FFF", align:"center"});
 
 	//Loop advisor text
 	this.talk = this.add.text(this.world.width - 120, this.world.height - 192, "", {size: "2px", fill: "#FFF",wordWrap: true, wordWrapWidth: this.advisorNPC.width*5, align: "center"});
+
+	//Timer
+	this.gameTimer = this.add.text(this.world.centerX-100, 50, "",{size: "16px", fill: "#FFF", align:"center"});
+	
+	//Loop the advisor dialog
 	this.time.events.loop(Phaser.Timer.SECOND*3, this.advisorTalk, this);
+
 	
 	//Player creation
 	this.player = this.add.sprite(32, this.world.height - 150, 'player');
@@ -59,8 +74,10 @@ state.Game.prototype = {
 	this.player.body.bounce.y = 0.1;
 	this.player.body.gravity.y = 400;
 	this.player.body.collideWorldBounds = true;
-	this.player.animations.add('left',[1,5,9,13],10,true);
-	this.player.animations.add('right',[3,7,11,15],10,true);
+	this.player.animations.add('left',[4,3,2,1],10,true);
+	this.player.animations.add('right',[5,6,7,8],10,true);
+	
+	this.camera.follow(this.player);
 
     },
 
@@ -68,7 +85,10 @@ state.Game.prototype = {
 	this.physics.arcade.collide(this.advisorNPC, this.platforms);
 	this.physics.arcade.collide(this.player, this.platforms);
 	//If player runs into race door, start the race level
-	this.physics.arcade.overlap(this.player, this.gates, this.startRace,null,this);
+	this.physics.arcade.overlap(this.player, this.raceGate, this.startRace,null,this);
+	this.physics.arcade.overlap(this.player, this.grudgeGate, this.startGrudge,null,this);
+	
+	this.gameTimer.setText("Time:"+parseInt(this.time.totalElapsedSeconds()));
 
 	this.player.body.velocity.x = 0;
 	
@@ -116,6 +136,11 @@ state.Game.prototype = {
     startRace: function(){
 
 	this.state.start('raceLevel');
+    },
+    
+    startGrudge: function(){
+
+	this.state.start('grudgeIntro');
     }
 
 
