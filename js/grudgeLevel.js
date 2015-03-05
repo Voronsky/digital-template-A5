@@ -13,7 +13,7 @@ state.grudgeLevel.prototype = {
 	this.load.image('ground','assets/platform_black.png');
 	this.load.image('flower','assets/flower.png');
 	this.load.audio('music',['assets/audio/Bonobo-Stay_The_Same_(Instrumental).mp3']);
-	this.load.audio('jump',['assets/audio/mario_jump.mp3']);
+	//this.load.audio('jump',['assets/audio/mario_jump.mp3']);
 //	this.load.spritesheet('player','assets/guy.png',33,34,9,0,4);
 	this.load.spritesheet('enemy','assets/baddie.png',32,32);
 	this.load.tilemap('map','assets/world.json',null,Phaser.Tilemap.TILED_JSON);
