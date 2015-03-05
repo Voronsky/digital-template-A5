@@ -10,6 +10,7 @@ state.Game.prototype = {
 	this.load.image('sky','assets/sky.png');
 	this.load.spritesheet('dude', 'assets/dude.png',32,48);
 	this.load.image('ground','assets/platform.png');
+	this.load.audio('jump',['assets/audio/mario_jump.mp3']);
 	this.load.image('gate','assets/gate.png');
 	this.load.spritesheet('player','assets/guy.png',33,34,9,0,4);
     },
@@ -19,6 +20,7 @@ state.Game.prototype = {
 	this.physics.startSystem(Phaser.Physics.ARCADE);
 	this.bgtile = this.add.tileSprite(0,0, 800,600,'sky');
 
+	this.jump = this.add.audio('jump');
 	
 	//Ground
 	this.platforms = this.add.group();
@@ -106,6 +108,8 @@ state.Game.prototype = {
 
 	//Jump mechanics
 	if(this.input.keyboard.isDown(keys.UP) && this.player.body.touching.down){
+	    this.jump.volume = 0.5;
+	    this.jump.play();
 	    this.player.body.velocity.y = -400;
 	}
 
